@@ -1,0 +1,71 @@
+\documentclass[UTF8,aspectratio=169]{beamer}%aspectratio=169将页面调整为16:9
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage{ctex}
+
+
+%更改主题
+\usetheme{Copenhagen}%主题选Copenhagen
+\usecolortheme{beaver}%但是颜色选beaver
+%关闭导航标志
+\setbeamertemplate{navigation symbols}{}
+%关闭目录导航
+\setbeamertemplate{headline}{}
+%item变隐藏形式
+\setbeamercovered{transparent}
+
+%打印设置
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper, border = 5mm]%一张纸打印四个
+
+\title{Beamer}
+\author{Rony Wang}
+\date{December 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+%目录
+\begin{frame}{Title Page}
+    \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Frame Title}
+    \begin{itemize}
+        \item<1-> Collaboration %第一张slide显示
+        \item<2-> Version history 1 %第二张slide显示
+        \item<3-> Version history 2 %第三张slide显示
+    \end{itemize}
+    %如果我想在点击之后出现，可以这样进行：
+    \only<1>{这个文字只会出现在第一页.}
+    \onslide<2>{This text only appear on the second slide.}
+    \onslide<3>{This text will continue appear on the third slide.}
+   
+
+    首先，第一页\alert<1>{警告},第二页\textbf<2>{加粗}.
+
+    
+\end{frame}
+\section{Two}
+\begin{frame}{Two Columns}
+    \begin{columns}
+        \column{0.5\textwidth}%占据一半页面文字长度
+            第一栏
+        \column{0.5\textwidth}
+            第二栏
+    \end{columns}
+\end{frame}
+
+\section{Three}
+\begin{frame}{Two Columns}
+    slide
+\end{frame}
+
+\begin{frame}{Two Columns}
+    slide
+\end{frame}
+\end{document}
