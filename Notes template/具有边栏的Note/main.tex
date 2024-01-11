@@ -1,0 +1,96 @@
+\documentclass[UTF8,12pt,twoside]{ctexart}
+
+\usepackage{geometry}%排版
+
+%%%%%%%%%%%%数学%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}%公式
+\usepackage{amsthm}%定理环境
+%\usepackage{ntheorem}%定理环境，使用这个会使\maketitle版式出问题
+\usepackage{mathrsfs}
+\numberwithin{equation}{section}%对公式以节{section}为基础进行编号.变成（1.1.1）有chapter才有1.1.1，不然只有section是1.1
+%\theoremstyle{plain}%定理用latex默认的版式
+\newtheorem{thm}{Theorem}[section]
+%\theoremstyle{definition}%定义用definition格式
+\newtheorem{defn}{Definition}
+%\theoremstyle{remark}%用remark格式
+\newtheorem{lemma}[thm]{lemma}
+\newtheorem{example}{Example}[section]
+\usepackage{bm}%加粗
+
+%%%%%%%%%%%%表格%%%%%%%%%%%%
+\usepackage{multirow}%表格列合并宏包，\multirow命令.
+\usepackage{tabularx}%表格等宽，\begin{tabularx}命令.
+	
+%%%%%%%%%%%%图片%%%%%%%%%%%%	
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+
+%%%%%%%%%%%%算法%%%%%%%%%%%%
+%\usepackage{algorithm,algorithmic}%算法
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{algpseudocode}
+
+		
+
+%%%%%%%%%%%%盒子%%%%%%%%%%%%%
+
+
+
+%\tcbuselibrary{skins, breakable}% 支持文本框跨页
+
+
+%%%%%%%%%%%%参考文献%%%%%%%%%%%%%
+\usepackage[round]{natbib}
+
+%%%%%%%%%%%%其他%%%%%%%%%%%%%
+\usepackage[english]{babel}% 载入美式英语断字模板
+\usepackage{caption}
+
+
+\usepackage{marginnote}
+\usepackage{xcolor} % 用于颜色设置
+\usepackage{lipsum} % 生成示例文本
+\usepackage{ifthen} % 提供条件判断命令
+\usepackage{graphicx}
+
+% 定义边注颜色
+\definecolor{mynotecolor}{rgb}{0.6, 0.4, 0.2} % 棕色
+
+\newcommand{\mymarginnote}[1]{
+	\ifthenelse{\isodd{\value{page}}}
+	{\normalmarginpar\marginnote{\textcolor{mynotecolor}{#1}}} % 奇数页的边注
+	{\reversemarginpar\marginnote{\textcolor{mynotecolor}{#1}}} % 偶数页的边注
+}
+
+
+%%%%%%%%%%%%标题页%%%%%%%%%%%%%
+\title{Title}
+\author{Renhe W.}
+\date{ }
+
+\begin{document}
+	\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={图}}%设置图注
+	
+	\maketitle
+	\tableofcontents%目录
+	\listoffigures%图片目录
+	\listoftables%表格目录
+	\newpage
+	\kaishu
+	
+	
+	%------------------------------------------- 
+	
+	
+	\lipsum[1-2]
+	\mymarginnote{这是一个边注}
+	
+	\lipsum[3-4]
+	\mymarginnote{另一个边注}
+	\marginnote{\includegraphics[width=2cm]{example-image}}
+	
+\end{document}

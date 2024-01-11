@@ -1,0 +1,389 @@
+\documentclass[a4]{ctexart}
+\usepackage{graphicx} % Required for inserting images
+
+\title{有趣的盒子：代码}
+\author{R.H Wang}
+\date{January 2024}
+
+%
+\usepackage{lipsum} % 用于生成示例文本
+\usepackage{zhlipsum} % 加载 zhlipsum 包
+%%%%%%%%%%%%数学%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}%公式
+\usepackage{amsthm}%定理环境
+%\usepackage{ntheorem}%定理环境，使用这个会使\maketitle版式出问题
+\usepackage{mathrsfs}
+\newcommand{\md}[1]{{\color{purple}#1}}
+\usepackage{geometry}%排版
+%a4版面，页边距1英寸,showframe 增加边框的参数。
+% 设置为A4纸，边距适中模式（永中office）
+\geometry{%
+	width = 210mm,%
+	height = 297mm,
+	left = 19.1mm,%
+	right = 19.1mm,%
+	top = 25.4mm,%
+	bottom = 25.4mm%
+}
+
+
+%main
+\usepackage{varwidth}
+\usepackage{tikz}
+\usetikzlibrary{calc} % 引入 calc 库以使用高级坐标计算
+%\usepackage{xeCJK}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{xparse,hooks,skins,breakable}
+\tcbuselibrary{listings}
+\usepackage{fontawesome}
+\usepackage{mdframed}
+\usepackage{xcolor}
+%\usepackage{codebox}
+
+\input{Manybox.tex}
+
+%%%%%%%%%%%%%代码%%%%%%%%%
+\definecolor{mlred}{RGB}{253,243,242}
+\definecolor{mred}{RGB}{220,53,69}
+\definecolor{bg}{rgb}{0.99,0.99,0.99}
+\definecolor{mlblue}{RGB}{236,243,255}
+\definecolor{mblue}{RGB}{0,123,255}
+\definecolor{lsp}{RGB}{0,174,247}
+\definecolor{mlblue3}{RGB}{44, 49, 51} % mycmd颜色
+\definecolor{mlblue2}{RGB}{35, 41, 55}
+
+%%%%%%%%%%%%%lstlistings%%%%%%%%%%%%%%%%%
+%---------- python code style ----------
+\lstdefinestyle{python2}{
+	language =   Python, % 语言选Python
+	frame=none,
+	basicstyle={\small\ttfamily\bfseries\color{white}},
+	mathescape,
+	emphstyle={\small\ttfamily\bfseries\color{white}},
+	numbers=none,
+	stepnumber=2,
+	numbersep=3em,
+	numberstyle= \small\ttfamily\bfseries\tiny,
+	keywordstyle    =  \small\ttfamily\bfseries\color{orange},
+	stringstyle     =  \small\ttfamily\bfseries\color{white},
+	breaklines      =   true,   % 自动换行，
+	columns         =   fixed,  %字间距就不固定很丑，必须加
+	basewidth       =   .5em,
+	commentstyle=\small\ttfamily\bfseries\color{cyan!30},
+	backgroundcolor=\color{mlblue3},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={Out,In,maketitle,pip,matplotlib,pandas,numpy,np,dtype},
+}
+\lstdefinestyle{python3}{
+	language =   Python, % 语言选Python
+	frame=none,
+	basicstyle={\small\ttfamily\bfseries\color{white}},
+	mathescape,
+	emphstyle={\small\ttfamily\bfseries\color{white}},
+	numbers=none,
+	stepnumber=2,
+	numbersep=3em,
+	numberstyle= \small\ttfamily\bfseries\tiny,
+	keywordstyle    =  \small\ttfamily\bfseries\color{orange},
+	stringstyle     =  \small\ttfamily\bfseries\color{white},
+	breaklines      =   true,   % 自动换行，
+	columns         =   fixed,  %字间距就不固定很丑，必须加
+	basewidth       =   .5em,
+	commentstyle=\small\ttfamily\bfseries\color{cyan!30},
+	backgroundcolor=\color{macosbox@bgdark},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={Out,In,maketitle,pip,matplotlib,pandas,numpy,np,dtype},
+}
+\lstdefinestyle{python4}{
+	language =   Python, % 语言选Python
+	frame=none,
+	mathescape,
+	emphstyle={\small\ttfamily\bfseries\color{frenchplum}},
+	numbers=none,
+	stepnumber=2,
+	numbersep=3em,
+	numberstyle= \small\ttfamily\bfseries\tiny,
+	keywordstyle    =  \small\ttfamily\bfseries\color{orange},
+	stringstyle     =  \small\ttfamily\bfseries\color{magenta},
+	breaklines      =   true,   % 自动换行，
+	columns         =   fixed,  %字间距就不固定很丑，必须加
+	basewidth       =   .5em,
+	commentstyle=\small\ttfamily\bfseries\color{cyan},
+	backgroundcolor=\color{macosbox@bg},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={Out,In,maketitle,pip,matplotlib,pandas,numpy,np,dtype},
+}
+\lstdefinestyle{pythonx}{
+	language =   Python, % 语言选Python
+	frame=none,
+	basicstyle={\small\ttfamily\bfseries\color{white}},
+	mathescape,
+	emph={main,Pool,}
+	emphstyle={\small\ttfamily\bfseries\color{orange}},
+	numbers=none,
+	stepnumber=2,
+	numbersep=3em,
+	numberstyle= \small\ttfamily\bfseries\tiny,
+	keywordstyle    =  \small\ttfamily\bfseries\color{cyan},
+	stringstyle     =  \small\ttfamily\bfseries\color{white},
+	breaklines      =   true,   % 自动换行，
+	columns         =   fixed,  %字间距就不固定很丑，必须加
+	basewidth       =   .5em,
+	commentstyle=\small\ttfamily\bfseries\color{cyan!30},
+	backgroundcolor=\color{black},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={Out,In,maketitle,pip,matplotlib,pandas,numpy,np,dtype},
+}
+
+%---------- matlab code style ----------
+% 定义颜色
+\definecolor{mKeyword}{RGB}{0,0,255}
+\definecolor{mString}{RGB}{160,32,240}
+\definecolor{mComment}{RGB}{34,139,34}
+\definecolor{mBackground}{RGB}{245,245,245}
+\definecolor{mNumber}{RGB}{134,145,148}
+\definecolor{mNumberbg}{RGB}{237,240,241}
+
+% 定义 MATLAB 风格
+\lstdefinestyle{matlab}{
+	language=Matlab,
+	basicstyle=\footnotesize\ttfamily, % 设置基本字体样式
+	keywordstyle=\color{mKeyword},    % 关键字颜色
+	stringstyle=\color{mString},      % 字符串颜色
+	commentstyle=\color{mComment},    % 注释颜色
+	backgroundcolor=\color{mBackground}, % 背景颜色
+	numberstyle=\tiny\color{mNumber}, % 行号颜色
+	numbers=left,                     % 行号位置
+	numbersep=9pt,                    % 行号与代码的距离
+	stepnumber=1,                     % 行号间隔
+	showspaces=false,                 % 不显示空格
+	showstringspaces=false,           % 字符串中不显示空格
+	showtabs=false,                   % 不显示制表符
+	tabsize=4,                        % 制表符大小
+	captionpos=t,                     % 标题位置
+	breaklines=true,                  % 自动换行
+	xleftmargin=30pt,
+	xrightmargin=10pt,
+	frame=l,
+	framesep=15pt,
+	rulecolor=\color{mNumberbg},
+	fillcolor=\color{mNumberbg},
+	framexleftmargin=5pt
+}
+
+
+%---------- R code style ----------
+% 定义颜色
+\definecolor{rKeyword}{RGB}{0,0,255}           % 蓝色
+\definecolor{rString}{RGB}{0,128,0}            % 绿色
+\definecolor{rComment}{RGB}{105,105,105}       % 灰色
+\definecolor{rBackground}{RGB}{255,255,255}    % 白色
+\definecolor{rNumber}{RGB}{128,128,128}        % 浅灰色
+\definecolor{rNumberbg}{RGB}{245,245,245}      % 非常浅的灰色
+
+% 定义 R 语言风格
+\lstdefinestyle{R}{
+	language=R,                      % 设置语言为 R
+	basicstyle=\footnotesize\ttfamily, % 设置基本字体样式
+	keywordstyle=\color{rKeyword},    % 关键字颜色
+	stringstyle=\color{rString},      % 字符串颜色
+	commentstyle=\color{rComment},    % 注释颜色
+	backgroundcolor=\color{rBackground}, % 背景颜色
+	numberstyle=\tiny\color{rNumber}, % 行号颜色
+	numbers=left,                     % 行号位置
+	numbersep=9pt,                    % 行号与代码的距离
+	stepnumber=1,                     % 行号间隔
+	showspaces=false,                 % 不显示空格
+	showstringspaces=false,           % 字符串中不显示空格
+	showtabs=false,                   % 不显示制表符
+	tabsize=4,                        % 制表符大小
+	captionpos=t,                     % 标题位置
+	breaklines=true,                  % 自动换行
+	xleftmargin=30pt,
+	xrightmargin=10pt,
+	frame=l,
+	framesep=15pt,
+	rulecolor=\color{rNumberbg},
+	fillcolor=\color{rNumberbg},
+	framexleftmargin=5pt
+}
+
+
+\definecolor{gptc1}{RGB}{52, 53, 64}
+\newtcolorbox{gptbox}[1][]{%
+	enhanced,
+	adjusted title,
+	toptitle=1mm,
+	bottomtitle=1mm,
+	colback=black,
+	coltitle=black,
+	boxrule=.5mm,
+	boxrule=0mm,
+	title= \textbf{\ttfamily \color{white} #1 \hspace*{\fill} \textbf{\ttfamily Copy code}}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{macosbox@top}{RGB}{237,237,237}
+\definecolor{macosbox@bot}{RGB}{189,189,189}
+\definecolor{macosbox@bord}{RGB}{182,176,176}
+\definecolor{macosbox@bg}{RGB}{240,240,240}
+\definecolor{macosbox@bgdark}{RGB}{55,56,58}
+\definecolor{macosbox@borddark}{RGB}{13,13,15}
+\definecolor{macosbox@topdark}{RGB}{96,96,98}
+\definecolor{macosbox@botdark}{RGB}{44,45,47}
+
+
+\newtcolorbox{macbox}[2][]{%
+	enhanced,
+	coltitle=black,
+	colback=macosbox@bg,
+	boxrule=0mm,
+	frame style={draw=macosbox@bord,fill=macosbox@bord},
+	title style={top color=macosbox@top,bottom color=macosbox@bot},
+	drop fuzzy shadow=black,
+	title={{\textcolor[RGB]{236, 96, 92}{\faCircle}
+			\textcolor[RGB]{247, 188, 44}{\faCircle}
+			\textcolor[RGB]{88, 204, 65}{\faCircle}
+			\hspace*{\fill}\hspace*{-10mm}\texttt{#2}\hspace*{\fill}}},#1
+}
+\newtcolorbox{macboxd}[2][]{%
+	enhanced,
+	colupper=white,
+	coltitle=white,
+	colback=macosbox@bgdark,
+	boxrule=0mm,
+	frame style={draw=macosbox@borddark,fill=macosbox@borddark},
+	title style={top color=macosbox@topdark,bottom color=macosbox@botdark},
+	drop fuzzy shadow=black,
+	title={{\textcolor[RGB]{236, 96, 92}{\faCircle}
+			\textcolor[RGB]{247, 188, 44}{\faCircle}
+			\textcolor[RGB]{88, 204, 65}{\faCircle}\hspace*{\fill}\hspace*{-10mm}\texttt{#2}\hspace*{\fill}}},
+	#1
+}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{tcblisting}{}
+	\begin{mybox1}
+		设$A,B$都是域$F$上的$n$级矩阵.证明:如果$AB\pm BA=A$,且$B$是幂零矩阵,那么$A=0$.
+	\end{mybox1}
+\end{tcblisting}
+
+\subsection{代码盒子}
+第一个Mac风格：
+\begin{tcblisting}{listing only}
+	\begin{macbox}{这是标题}
+		\begin{lstlisting}[style=python4]
+			def main(): # 主函数
+			pool = multiprocessing.Pool(processes=2) # 定义2个大小的进程池
+			for item in range(10): # 创建10个进程
+			result = pool.apply_async(func=work, args=(item,)) # 非阻塞形式执行进程
+			print(result.get()) # 获取进程返回结果
+			pool.close() # 执行完毕后关闭进程池
+			pool.join() # 等待进程池执行完毕
+		\end{lstlisting}
+	\end{macbox}
+\end{tcblisting}
+
+
+\begin{macbox}{这是标题}
+	\begin{lstlisting}[style=python4]
+		def main(): # 主函数
+		pool = multiprocessing.Pool(processes=2) # 定义2个大小的进程池
+		for item in range(10): # 创建10个进程
+		result = pool.apply_async(func=work, args=(item,)) # 非阻塞形式执行进程
+		print(result.get()) # 获取进程返回结果
+		pool.close() # 执行完毕后关闭进程池
+		pool.join() # 等待进程池执行完毕
+	\end{lstlisting}
+\end{macbox}
+
+\begin{tcblisting}{listing only}
+	\begin{macboxd}{这是标题}
+		\begin{lstlisting}[style=python3]
+			def main(): # 主函数
+			pool = multiprocessing.Pool(processes=2) # 定义2个大小的进程池
+			for item in range(10): # 创建10个进程
+			result = pool.apply_async(func=work, args=(item,)) # 非阻塞形式执行进程
+			print(result.get()) # 获取进程返回结果
+			pool.close() # 执行完毕后关闭进程池
+			pool.join() # 等待进程池执行完毕
+		\end{lstlisting}
+	\end{macboxd}
+\end{tcblisting}
+
+\begin{macboxd}{这是标题}
+	\begin{lstlisting}[style=python3]
+		def main(): # 主函数
+		pool = multiprocessing.Pool(processes=2) # 定义2个大小的进程池
+		for item in range(10): # 创建10个进程
+		result = pool.apply_async(func=work, args=(item,)) # 非阻塞形式执行进程
+		print(result.get()) # 获取进程返回结果
+		pool.close() # 执行完毕后关闭进程池
+		pool.join() # 等待进程池执行完毕
+	\end{lstlisting}
+\end{macboxd}
+\verb*|style=python3|，总共定义了\verb*|python2| \verb*|python2| \verb*|python3| \verb*|pythonx|四个风格的可以选用.以及可以选取\verb*|matlab|和\verb*|R|.
+\subsection{代码块}
+
+\begin{lstlisting}[style=matlab,title={MATLAB code}]
+	% Euler method for the ODE model
+	% u'(x)=x^2+x-u, x in [0,1]
+	% Initial condition: u(0)=0 ;
+	% Exact solution: u(x)=-exp(-x)+x^2-x+1.
+	clear all;  clf
+	h=0.1;
+	x=0:h:1;
+	N=length(x)-1;
+	u(1)=0;                        % initial value
+	fun=@(t,u) t.^2+t-u;           % RHS
+	
+	for n=1:N
+	u(n+1)=u(n)+h.*fun(x(n),u(n));
+	end
+	
+	ue=-exp(-x)+x.^2-x+1;          % exact solution
+	plot(x,ue,'b-',x,u,'r+','LineWidth',1)
+	legend('Exact','Numerical','location','North')
+	%title('Euler method','fontsize',12)
+	set(gca,'fontsize',12)
+	xlabel('x','fontsize',16), ylabel('u','fontsize',16,'Rotation',0)
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=R,title={R code}]
+	# parameter constraints
+	trans = function(b0){
+		b1 = b0
+		
+		# probability
+		b1[1:2] = exp(b0[1:2])/(1+exp(b0[1:2]))
+		
+		# variance
+		b1[5] = b0[5]^2
+		
+		# AR(1), AR(2) coefficients
+		XX6 = b0[6]/(1+abs(b0[6]))
+		XX7 = b0[7]/(1+abs(b0[7]))
+		b1[6] = XX6 + XX7
+		b1[7] = -1*XX6*XX7
+		
+		return(b1)
+	}
+\end{lstlisting}
+
+\end{document}

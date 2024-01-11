@@ -1,0 +1,23 @@
+%导言区
+\definecolor{DeepBlue}{RGB}{43,59,83}
+\definecolor{Deepblue}{RGB}{75,101,134}
+\definecolor{Blue}{RGB}{113,151,172}
+\definecolor{Wine}{RGB}{136,63,75}
+\definecolor{Pink}{RGB}{226,209,211}
+\definecolor{Deepviolet}{RGB}{77,49,78}
+\definecolor{Violet}{RGB}{103,76,120}
+\DeclareTColorBox{breakablebox}{ o m O{}}%
+{enhanced,colback=white, skin=enhancedlast jigsaw,breakable, attach boxed title to top left={xshift=-4mm,yshift=-0.5mm}, fonttitle=\bfseries\rmfamily, varwidth boxed title=0.85\linewidth, colbacktitle=Violet,colframe=Violet,
+    boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt,breakable=true},
+    underlay boxed title={%
+        \fill[Violet] (title.north west) -- (title.north east) -- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
+        -- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm) -- (title.south west) -- cycle;
+        \fill[Deepviolet] ([yshift=-0.5mm]frame.north west)
+        -- +(-0.4,0) -- +(0,-0.3) -- cycle;
+        \fill[Deepviolet] ([yshift=-0.5mm]frame.north east)
+        -- +(0,-0.3) -- +(0.4,0) -- cycle;  },
+    IfValueTF={#1}{title=#2〈#1〉}{title=#2},#3}
+%正文
+\begin{breakablebox}[子标题]{标题}
+    \zhlipsum[1-5]{}
+\end{breakablebox}

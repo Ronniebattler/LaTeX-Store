@@ -1,0 +1,11 @@
+^^I\begin{macboxd}{这是标题}
+^^I^^I\begin{lstlisting}[style=python3]
+^^I^^I^^Idef main(): # 主函数
+^^I^^I^^Ipool = multiprocessing.Pool(processes=2) # 定义2个大小的进程池
+^^I^^I^^Ifor item in range(10): # 创建10个进程
+^^I^^I^^Iresult = pool.apply_async(func=work, args=(item,)) # 非阻塞形式执行进程
+^^I^^I^^Iprint(result.get()) # 获取进程返回结果
+^^I^^I^^Ipool.close() # 执行完毕后关闭进程池
+^^I^^I^^Ipool.join() # 等待进程池执行完毕
+^^I^^I\end{lstlisting}
+^^I\end{macboxd}
